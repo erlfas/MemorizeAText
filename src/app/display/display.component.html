@@ -7,7 +7,7 @@
         <div class="panel-body">
           <div class="form-group">
             <label for="comment">Input:</label>
-            <textarea [style.font-size.px]="fontSize" class="form-control" rows="18" id="comment" [formControl]="myForm.controls['left']">
+            <textarea [style.font-size.px]="fontSize" style="resize:none" class="form-control" rows="18" id="comment" [formControl]="myForm.controls['left']">
             </textarea>
           </div>
         </div>
@@ -18,7 +18,7 @@
         <div class="panel-body">
           <div class="form-group">
             <label for="comment">Output:</label>
-            <textarea [style.font-size.px]="fontSize" readonly class="form-control" rows="18" id="comment" [formControl]="myForm.controls['right']">
+            <textarea [style.font-size.px]="fontSize" style="resize:none" readonly class="form-control" rows="18" id="comment" [formControl]="myForm.controls['right']">
             </textarea>
           </div>
         </div>
