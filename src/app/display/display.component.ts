@@ -25,7 +25,7 @@ export class DisplayComponent {
 
     this.right = this.myForm.controls['right'];
     this.right.valueChanges.subscribe((form: string) => {
-      //console.log('form changed to:', form);
+      
     });
   }
 
@@ -35,15 +35,21 @@ export class DisplayComponent {
     let output: string = "";
     for (let line of lines) {
       let shortenedLine = line.split(' ').map(x => {
+        // if leading character is number, return whole word
         if (parseInt(x[0], 10) || x[0] === '0') {
-          //console.log('is number: ', x);
+          console.log('number: ' + x);
           return x;
-        } else {
+        } else if (!this.isLetter(x.substr(0,1)) && x.length > 1) { // if leading character is symbol
+          // Include leading non letter symbol
+          let letter = x.substr(0, 2);
+          console.log('Symbol: ' + letter);
+          return letter;
+        } else { // if is letter
           let letter = x.substr(0, 1);
-          if (x.length > 1 && x.endsWith(',') || x.endsWith('.') || x.endsWith('!') || x.endsWith(':')) {
-            letter = letter + x.substring(x.length - 1, x.length);
+          if (x.length > 1 && x.endsWith(',') || x.endsWith('.') || x.endsWith('!') || x.endsWith(':') || x.endsWith(')')) {
+            letter = letter + x.substring(x.length - 1, x.length); // include symbol at end
           }
-          //console.log('first letter: ', letter);
+          console.log('letter: ' + letter);
           return letter;
         }
       }).join(' ');
@@ -54,5 +60,10 @@ export class DisplayComponent {
     return output;
   }
 
+  isLetter(str: string): boolean {
+    let res: boolean = /[a-z]/i.test(str);
+    console.log('Is ' + str + ' a letter? ' + res);
+    return res;
+  }
 
 }
