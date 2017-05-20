@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
+import { TextAdjusterComponent } from './text-adjuster/text-adjuster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DisplayComponent
+    DisplayComponent,
+    TextAdjusterComponent
   ],
   imports: [
     BrowserModule,
