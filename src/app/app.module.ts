@@ -8,14 +8,12 @@ import { DisplayComponent } from './display/display.component';
 import { TextAdjusterComponent } from './text-adjuster/text-adjuster.component';
 
 import { TextsService } from './text/texts.service';
-import { TextSaverComponent } from './text-saver/text-saver.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisplayComponent,
-    TextAdjusterComponent,
-    TextSaverComponent
+    TextAdjusterComponent
   ],
   imports: [
     BrowserModule,

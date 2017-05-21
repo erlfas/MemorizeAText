@@ -47,7 +47,7 @@ export class DisplayComponent implements OnInit {
   }
 
   saveText(title: string, text: string): void {
-    console.log('saveText with title ' + title + " and with text " + text);
+    //console.log('saveText with title ' + title + " and with text " + text);
     this.textsService.addText(new Text(this.uid, title, text, this.convert(text)));
 
     this.uid = this.uid + 1;
