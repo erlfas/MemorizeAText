@@ -1,13 +1,30 @@
 <text-adjuster (onSizeEmitted)="sizeWasChanged($event)"></text-adjuster>
 <div><span><br /></span></div>
+
 <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+  <div class="row" [ngStyle]="{'visibility': isSomethingToSave ? 'visible' : 'hidden'}">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" (click)="saveText(titleinput.value, textToMemorize.value)">Save!</button>
+        </span>
+        <input type="text" class="form-control" placeholder="Title" [formControl]="myForm.controls['title']" #titleinput>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="input-group"></div>
+    </div>
+  </div>
+
+  <div><span><br /></span></div>
+
   <div class="row">
     <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="form-group">
             <label for="comment">Input:</label>
-            <textarea [style.font-size.px]="fontSize" style="resize:none" class="form-control" rows="18" id="comment" [formControl]="myForm.controls['left']">
+            <textarea [style.font-size.px]="fontSize" style="resize:none" class="form-control" rows="18" id="comment" [formControl]="myForm.controls['left']" #textToMemorize>
             </textarea>
           </div>
         </div>
@@ -25,4 +42,5 @@
       </div>
     </div>
   </div>
+
 </form>

@@ -1,6 +1,7 @@
 export class Text {
     constructor(
-        public id: number,
+        public uid: number,
+        public title: string,
         public originalText: string,
         public shortenedText: string) {}
 }

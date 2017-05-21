@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { DisplayComponent } from './display/display.component';
 import { TextAdjusterComponent } from './text-adjuster/text-adjuster.component';
 
+import { TextsService } from './text/texts.service';
+import { TextSaverComponent } from './text-saver/text-saver.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DisplayComponent,
-    TextAdjusterComponent
+    TextAdjusterComponent,
+    TextSaverComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,9 @@ import { TextAdjusterComponent } from './text-adjuster/text-adjuster.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    TextsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

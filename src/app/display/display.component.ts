@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { TextsService } from '../text/texts.service';
+import { Text } from '../text/text.model';
 
 @Component({
   selector: 'display',
@@ -11,28 +13,51 @@ export class DisplayComponent implements OnInit {
   myForm: FormGroup;
   left: AbstractControl;
   right: AbstractControl;
+  title: AbstractControl;
 
+  uid: number;
   fontSize: number;
+  isSomethingToSave: boolean;
 
-  constructor(fb: FormBuilder) {
+  constructor(public textsService: TextsService, fb: FormBuilder, ) {
+    this.uid = 1;
+
     this.myForm = fb.group({
       'left': [''],
-      'right': ['']
+      'right': [''],
+      'title': ['']
     });
 
     this.left = this.myForm.controls['left'];
-    this.left.valueChanges.subscribe((form: string) => {
-      this.right.setValue(this.convert(form));
-    });
-
     this.right = this.myForm.controls['right'];
-    this.right.valueChanges.subscribe((form: string) => {
-
+    this.left.valueChanges.subscribe((str: string) => {
+      this.right.setValue(this.convert(str));
+      if (str != null && str.length > 0) {
+        this.isSomethingToSave = true;
+      } else {
+        this.isSomethingToSave = false;
+      }
     });
+    
   }
 
   ngOnInit(): void {
     this.fontSize = 14;
+    this.isSomethingToSave = false;
+  }
+
+  saveText(title: string, text: string): void {
+    console.log('saveText with title ' + title + " and with text " + text);
+    this.textsService.addText(new Text(this.uid, title, text, this.convert(text)));
+
+    this.uid = this.uid + 1;
+
+    /*console.log('numTexts(): ' + this.textsService.numTexts());
+    console.log('count(): ' + this.textsService.count());
+
+    for (let text of this.textsService.texts) {
+      console.log("Text: " + text.uid + ", " + text.title + ", " + text.originalText + ", " + text.shortenedText);
+    }*/
   }
 
   convert(value: string): string {
